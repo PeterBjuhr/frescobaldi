@@ -39,6 +39,7 @@ var maxY = svg.offsetHeight - 1;
 var draggable = document.getElementsByTagName('a');
 var draggedObject = null;
 var clone, delNode;
+var doClick = true;
 
 ///////////////////////////////////////////////
 // Helper functions
@@ -345,8 +346,7 @@ function MouseDown(e) {
     // if yes: add the group to draggedObject as a property.
 
     // send signals
-    pyLinks.click(draggedObject.textedit);
-    pyLinks.dragElement(draggedObject.textedit);
+    pyLinks.dragElement(draggedObject.textedit)
     pyLinks.startDragging(draggedObject.currOffX, draggedObject.currOffY);
     pyLinks.draggedObject(draggedObject.JSONified());
 
@@ -386,6 +386,8 @@ function MouseMove(e) {
 
         pyLinks.dragging(draggedObject.currOffX, draggedObject.currOffY);
         
+        //disable click
+        doClick = false;
     }
 }
 
@@ -416,6 +418,14 @@ function MouseUp(e) {
         }
 
         enableMouseEvents(clone);
+        
+        //if no drag is performed treat the event as a click
+        if(doClick){
+            pyLinks.click(draggedObject.textedit);
+        }else{
+            pyLinks.dragged(draggedObject.currOffX, draggedObject.currOffY);
+            doClick = true; //unset drag
+        }
 
         // clean up
         draggedObject = null;
