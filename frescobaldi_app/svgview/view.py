@@ -100,8 +100,28 @@ class View(QtWebKit.QWebView):
         if not self.url().isEmpty():
             frame = self.page().mainFrame()
             frame.addToJavaScriptWindowObject("pyLinks", self.jslink)
-            frame.evaluateJavaScript(getJsScript('pointandclick.js'))
-            frame.evaluateJavaScript(getJsScript('editsvg.js')) #remove this for stable releases
+            
+            jsCode = ""
+            jsCode = getJsScript('scripts/jquery-2.1.0.js')
+            #jsCode = getJsScript('scripts/jquery-1.11.0.js')
+            jsCode += getJsScript('pointandclick.js')
+            jsCode += getJsScript('editsvg.js') # Remove this for stable releases
+            
+            frame.evaluateJavaScript(jsCode)
+            
+#            frame.evaluateJavaScript("test = $('svg')")
+#            frame.evaluateJavaScript("pyLinks.pyLog(test.toString())")
+            
+#            frame.evaluateJavaScript(getJsScript('scripts/jquery-2.1.0.js'))
+#            print frame.evaluateJavaScript("var test = $('svg'); return test;")
+#            print "test executed"
+#            frame.evaluateJavaScript(getJsScript('pointandclick.js'))
+#            print "evaluate editsvg"
+#            frame.evaluateJavaScript("test = 4")
+#            frame.evaluateJavaScript(getJsScript('scripts/jquery-2.1.0.js') + "\n" +
+#                                     getJsScript('editsvg.js'))
+#            frame.evaluateJavaScript(getJsScript('editsvg.js')) #remove this for stable releases
+            print "have evaluated editsvg"
             
     def evalSave(self):
         frame = self.page().mainFrame()

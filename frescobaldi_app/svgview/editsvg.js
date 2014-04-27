@@ -34,6 +34,8 @@ window.addEventListener('error', error, false);
 
 var svgarr = document.getElementsByTagName("svg");
 var svg = svgarr[0];
+//var jsvg = $('svg:first');
+pyLinks.pyLog("Test inside");
 var maxX = svg.offsetWidth - 1;
 var maxY = svg.offsetHeight - 1;
 var draggable = document.getElementsByTagName('a');
