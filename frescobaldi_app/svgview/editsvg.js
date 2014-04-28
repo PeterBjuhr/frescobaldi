@@ -34,13 +34,23 @@ window.addEventListener('error', error, false);
 
 var svgarr = document.getElementsByTagName("svg");
 var svg = svgarr[0];
-//var jsvg = $('svg:first');
-pyLinks.pyLog("Test inside");
+
+var svgdoc = svgarr.contentDocument;
+var svgroot = svgarr.documentElement;
+pyLinks.pyLog(typeof svgdoc);
+//var svg = $('svg');
+//svg = svg.first();
+//pyLinks.pyLog(Object.keys(svg));
+//pyLinks.pyLog(svg.html());
+//svg = svg.get(0);
+//pyLinks.pyLog(typeof svg);
+pyLinks.pyLog("Test inside after");
 var maxX = svg.offsetWidth - 1;
 var maxY = svg.offsetHeight - 1;
 var draggable = document.getElementsByTagName('a');
 var draggedObject = null;
 var clone, delNode;
+
 
 ///////////////////////////////////////////////
 // Helper functions
