@@ -32,13 +32,13 @@ window.addEventListener('error', error, false);
 * - Actual execution block
 */
 
-var svgarr = document.getElementsByTagName("svg");
-var svg = svgarr[0];
+//var svgarr = document.getElementsByTagName("svg");
+//var svg = svgarr[0];
 
-var svgdoc = svgarr.contentDocument;
-var svgroot = svgarr.documentElement;
-pyLinks.pyLog(typeof svgdoc);
-//var svg = $('svg');
+//var svgdoc = svgarr.contentDocument;
+//var svgroot = svgarr.documentElement;
+var svg = $('div');
+pyLinks.pyLog(svg.length);
 //svg = svg.first();
 //pyLinks.pyLog(Object.keys(svg));
 //pyLinks.pyLog(svg.html());
