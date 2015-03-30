@@ -49,6 +49,7 @@ def app_is_git_controlled():
                 return _app_is_git_controlled
             except (GitError, OSError) as error:
                 error_type = type(error).__name__
+                error = str(error).decode(sys.getfilesystemencoding())
                 from PyQt4.QtGui import QMessageBox
                 QMessageBox.warning(None, 
                                     _("Git not found"),
@@ -59,7 +60,7 @@ def app_is_git_controlled():
                                       "you can specify its location in the "
                                       "Preferences dialog.\n\n"
                                       "Error message:\n\n")
-                                        + error_type + ': ' + str(error))
+                                        + error_type + ': ' + error)
                 _app_is_git_controlled = False
                 return _app_is_git_controlled
         else:
